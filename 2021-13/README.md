@@ -1,1 +1,1 @@
-![](plots/un_votes.png)
+![](un_votes.png)
