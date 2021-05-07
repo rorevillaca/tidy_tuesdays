@@ -16,25 +16,24 @@ myPalette <- forest$text_color
 names(myPalette) <- forest$entity
 
 
-a<-forest %>%  ggplot(aes(y=reorder(entity,-net_forest_conversion),x=net_forest_conversion/1000000))+
+forest %>%  ggplot(aes(y=reorder(entity,-net_forest_conversion),x=net_forest_conversion/1000000))+
   geom_point(aes(size=share_of_global_forest_area/100,color=ifelse(net_forest_conversion<0,"#AB0730",ifelse(net_forest_conversion==0,"#F6B71A","#7D8F29"))),alpha=0.65)+
   scale_color_identity(guide=F)+theme_minimal()+
   scale_size(labels=scales::percent)+
   scale_x_continuous(labels = scales::dollar_format(suffix = " M ha",prefix = ""))+
   geom_curve(aes(x = 1.8, y = 10, xend = 1.93, yend = 2),arrow = arrow(length = unit(0.01, "npc")),curvature = -0.2) +
-  geom_richtext(aes(label="In 2015 China accounted for **5.14%** of the global forest area,<br>and contributed with **1.9 M** net hectares",hjust=1,vjust=0,x=1.8,y=10),fill = NA, label.color = NA,size=3.2)+
+  geom_richtext(aes(label="China accounts for **5.14%** of the global forest area,<br>and in '15-'19 contributed with **1.9 M** net hectares",hjust=1,vjust=0,x=1.8,y=10),fill = NA, label.color = NA,size=3.2)+
   geom_curve(aes(x = -1.46, y = 117, xend = -1.34, yend = 109),arrow = arrow(length = unit(0.01, "npc")),curvature = 0.2) +
-  geom_richtext(aes(label="Brazil owned the highest share of forest area **(12.3%)**,<br>and lost more than **1.4 M** hectares of green areas",hjust=0,vjust=1,x=-1.65,y=108),fill = NA, label.color = NA,size=3.2)+
+  geom_richtext(aes(label="Brazil owns the highest share of forest area **(12.3%)**,<br>and lost more than **1.4 M** hectares to deforestation",hjust=1,vjust=0,x=1.8,y=10),fill = NA, label.color = NA,size=3.2)+
   geom_curve(aes(x = 0.05, y = 65.3, xend = 0.05, yend = 40.7),curvature = 0) +
-  geom_richtext(aes(label="25 countries had neither a positive nor a negative effect",hjust=0,vjust=1,x=0.06,y=50),fill = NA, label.color = NA,size=3.2)+
   labs(x="NET FOREST CONVERSION",y="COUNTRY",caption = "M ha: Million hectares",size="Share of global forest area")+
   labs(title="Between 2010 and 2015, 5.1 million hectares of forest were lost worldwide")+
   labs(subtitle="<span style = 'font-size:13.5pt'><span style = 'color:#AB0730'>**53 countries were responsible for this loss,**</span> **whereas 65 countries had either a** <span style = 'color:#F6B71A'>**neutral**</span> **or a**<span style = 'color:#7D8F29'> **positive**</span> **impact**</span>")+
   theme(plot.subtitle = ggtext::element_textbox_simple(hjust = 1))+
   theme(legend.position="top",axis.text.y = element_text(color=myPalette[forest %>% arrange(desc(net_forest_conversion)) %>% pull(entity)]))+
   theme(text=element_text(family = "Roboto Condensed"),plot.title = element_text(size=20,face="bold"))+
-  theme(axis.title = element_text(hjust = 0,colour = "darkgrey",face="bold"))+
+  theme(axis.title = element_text(hjust = 0.5,colour = "darkgrey",face="bold"))+
   guides(size=guide_legend(override.aes=list(colour="steelblue")))
 
-ggsave(plot=a,here("2021-15","deforestation.png"),width = 10,height = 15)
+ggsave(here("2021-15","deforestation.png"),width = 10,height = 15)
 
