@@ -31,6 +31,7 @@ datos %>%
   scale_fill_identity()+
   coord_cartesian(clip = "off",xlim = c(1994, 2019))+
   labs(title="Christian Bale's BMI Through the Years",
+       caption="DATA: METAFLIX | VIZ: @ROREVILLACA",
        subtitle="From 1994 to 2019, the actor classified into the 4 weight-status groups according to the WHO",x="YEAR",y="BODY MASS INDEX (kg/m²)   ")+
   guides(color="none")+
   theme_ipsum_rc()+
@@ -38,4 +39,5 @@ datos %>%
         axis.text.y = element_text(family = "RobotoCondensed-Bold", size = 12,face = "bold"),
         axis.title.x = element_text(family = "RobotoCondensed-Bold", size = 12,face = "bold",color="gray50"),
         axis.title.y = element_text(family = "RobotoCondensed-Bold", size = 12,face = "bold",color="gray50"),
-        plot.subtitle = element_text(size=16))
+        plot.subtitle = element_text(size=16),
+        plot.caption = element_text(family = "RobotoCondensed-Bold", size = 10,face = "bold",color="gray50"))
